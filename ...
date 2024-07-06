@@ -1,0 +1,37 @@
+filename = '/content/prices.txt'
+
+try:
+    # Open and read the file
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+
+    print("Standard file input/output:")
+    for line in lines:
+        print(line, end='')
+
+    # Initialize variables for total price and item count
+    total_price = 0.0
+    item_count = 0
+
+    # Iterate through each line
+    for line in lines:
+        # Strip any leading/trailing whitespace characters
+        line = line.strip()
+
+        # Check if the line is a valid number
+        try:
+            # Try to convert the line to a float
+            price = float(line)
+            # Add to the total price
+            total_price += price
+            # Increment the item count
+            item_count += 1
+        except ValueError:
+            # If conversion fails, it means the line is not a number, so we skip it
+            continue
+
+    print('Total Price:', total_price)
+    print('Total Number of Purchased Items:', item_count)
+
+except FileNotFoundError:
+    print("This filename does not exist!")
